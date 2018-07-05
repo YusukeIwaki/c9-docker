@@ -27,7 +27,19 @@ RUN cd /c9/sdk/ && ./scripts/install-sdk.sh
 
 USER root
 
-# SOME ADDITIONAL INSTALL HERE...
+## >>> ADDITIONAL INSTALL >>>
+
+# Install Python
+RUN apt-get -y install python3.7 python3.7-dev python3.7-distutils
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+
+# Install pip
+RUN curl https://bootstrap.pypa.io/get-pip.py | python
+
+# Install pipenv
+RUN pip install pipenv
+
+## <<< ADDITIONAL INSTALL <<<
 
 USER $USERNAME
 
